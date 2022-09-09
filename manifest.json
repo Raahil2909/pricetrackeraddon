@@ -6,7 +6,6 @@
     "background":{
         "service_worker":"background.js"
     },
-    "permissions":["storage"],
 
     "action":{
         "default_popup":"popup.html"
@@ -16,5 +15,6 @@
           "matches": ["<all_urls>"],
           "js": ["content.js"]
         }
-      ]
+    ],
+    "permissions":["tabs","activeTab","storage"]
 }
