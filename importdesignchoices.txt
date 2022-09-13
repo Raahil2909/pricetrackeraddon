@@ -1,0 +1,14 @@
+1. why we need a server ?
+Ans. We need to timely fetch the contents of a webpage to get the price of an item. This can be done using background.js but the issue is that we cannot easily query for items like we can when we have the access to dom of the webpage. Also it is not easy to import libraries there and hence it makes it tedious to that task from scratch.
+
+2. Do we  need a database ?
+Ans. We do need to store small amount of data but instead of using a databse we can simply store that data in user's browser
+
+3. Do we need user accounts ?
+Ans. No we dont.
+
+4. Then how do keep track of which user wants price of which items?
+Ans. We dont. We just store url in user's browser storage. Then we use alarm which is a feature given by chrome extension api. We use it to make request to server to tell us the price whenever we need i.e at intervals of say 1hr.
+
+5. So what is the role of server exactly ?
+Ans. The only thing server does is that when we send it a request it will fetch the price of item from amazon's website and return to us

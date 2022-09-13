@@ -4,7 +4,8 @@
     "version":"0.0",
     "manifest_version": 3,
     "background":{
-        "service_worker":"background.js"
+        "service_worker": "background.js",
+        "type":"module"
     },
 
     "action":{
@@ -16,5 +17,5 @@
           "js": ["content.js"]
         }
     ],
-    "permissions":["tabs","activeTab","storage"]
+    "permissions":["tabs","activeTab","storage","alarms"]
 }

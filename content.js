@@ -5,6 +5,16 @@ chrome.runtime.sendMessage({
 })
 
 chrome.runtime.onMessage.addListener((request,sender,sendResponse)=>{
-        console.log(request.message.hi)
+        // console.log(request.message.hi)
+        if(request.message.trigger=='track'){
+            content = fetchPage();
+            console.log(content)
+        }
     }
 )
+
+async function fetchPage() {
+	const resp = await fetch(location.href);
+	console.log(await resp.json());
+}
+
