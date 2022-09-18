@@ -1,5 +1,5 @@
 import json
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from markupsafe import escape
 import requests
 from bs4 import BeautifulSoup
@@ -25,12 +25,11 @@ def scrape(url):
     print(f'[+] price: {price}')
     return price
 
-@app.route("/amazon/<url>")
-def hello_world(url):
-    print(f'url : {url}')
-    url = b64decode(url).decode()
+@app.route("/amazon", methods = ['POST'])
+def hello_world():
+    print(f'[+] data: {request.form}')
+    url = request.form['url']
+    print(f'[+] url : {url}')
     price = scrape(url)
     print(f'{price=}')
-
-    # print(dom.xpath('/html/body/div[2]/div[2]/div[5]/div[4]/div[1]/div[3]/div/div/div/div/form/div/div/div/div/div[2]/div[1]/div/span/span[1]'))
     return jsonify({'price':price})
