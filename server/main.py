@@ -18,10 +18,11 @@ def scrape(url):
     userAgent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36"
     headers = {'User-Agenet':userAgent}
     session = requests.Session()
-    resp = session.get(url,headers=headers)
+    resp = session.get(url,headers=headers,verify=False)
     soup = BeautifulSoup(resp.content, "html.parser")
     # dom = etree.HTML(str(soup))
     price = getPrice(soup)
+    price = float(price.replace(',',''))
     print(f'[+] price: {price}')
     return price
 

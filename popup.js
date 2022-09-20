@@ -13,22 +13,18 @@ function getDataObj(targetPageUrl, threshold, price){
     return {url: targetPageUrl, threshold: threshold, prices: [price]};
 }
 
-
 function storeJSON(dataJSON){
-    console.log('storing the json ...');
     chrome.storage.sync.set({'dataitems':dataJSON},function(){
         console.log('[+] stored data');
     });
 }
 
 function storeList(dataItemsList){
-    console.log('storing the list ... ');
     storeJSON(JSON.stringify(dataItemsList));
 }
 
 trackBtn.addEventListener("click",async ()=>{
-    threshold = document.querySelector('#threshold-price').value;
-    // console.log(`price:${threshold}`);
+    threshold = parseFloat(document.querySelector('#threshold-price').value);
     document.body.style.backgroundColor = "blue"; // for debugging purposes
     chrome.alarms.getAll(function(alarms){
         // add alarm only if one doesnt exist alredy i.e goes in this if only when user adds first item
@@ -39,9 +35,7 @@ trackBtn.addEventListener("click",async ()=>{
     
     // add the url in our storage
     // later on add validation here to see if a valid url is being saved
-    
-    console.info(`serverurl : ${serverUrl}, targetPageUrl: ${targetPageUrl}`);
-    document.body.style.backgroundColor = "green"; 
+    document.body.style.backgroundColor = "green"; // for debugging purposes
     await fetch(serverUrl,{
         method: "post",
         body: `url=${targetPageUrl}`,
@@ -49,8 +43,7 @@ trackBtn.addEventListener("click",async ()=>{
             "Content-Type": "application/x-www-form-urlencoded"
         }
     }).then(function(resp){return resp.json();}).then(function(resp){
-        document.body.style.backgroundColor = "grey"; 
-        console.log(`price: ${resp.price}`);
+        document.body.style.backgroundColor = "grey"; // for debugging purposes
         chrome.storage.sync.get(['dataitems'], function(res){
             let dataitems = [];
             if(res?.dataitems){
@@ -59,27 +52,20 @@ trackBtn.addEventListener("click",async ()=>{
             let newObj = getDataObj(targetPageUrl,threshold,resp.price);
             dataitems.push(newObj);
             storeList(dataitems);
-            // let newdataitems = getStorable(targetPageUrl, threshold, [resp.price], dataitems);
-            // chrome.storage.sync.set({'dataitems':newdataitems}, function(){
-            //     console.info(`storing : ${data}`);
-            // });
         });
     });
     
     
 });
 
-
-
 function fillTable(){ 
-    console.log('filling table ...');
     chrome.storage.sync.get(['dataitems'],function(res){
         if(res.dataitems){
             let dataitems = JSON.parse(res.dataitems);
             let itemsTable = document.querySelector('#items-table');
             let i = 1;
             for(let data of dataitems){
-                console.info(`data from popup: ${JSON.stringify(data)}`);
+                // console.info(`data from popup: ${JSON.stringify(data)}`);
                 newrow = `<tr>
                     <th scope="row">${i}</th>
                     <td><a href="${data.url}">Link</a></td>
