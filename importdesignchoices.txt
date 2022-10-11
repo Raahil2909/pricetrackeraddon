@@ -11,12 +11,15 @@ Ans. No we dont.
 Ans. We dont. We just store url in user's browser storage. Then we use alarm which is a feature given by chrome extension api. We use it to make request to server to tell us the price whenever we need i.e at intervals of say 1hr.
 
 5. So what is the role of server exactly ?
-Ans. The only thing server does is that when we send it a request it will fetch the price of item from amazon's website and return to us 
+Ans. The only thing server does is that when we send it a request it will fetch the item price and name from amazon's website and return to us 
 
 6. keep in mind the seucrity aspect as server will be making get requests to websites. it should not be downloading malicious file by making req to random pages.
 
 7. get or post request to server?
-Ans. Should be post request as get request might exceed the length of url allowed
+Ans. It is a post request as we need to send url to server which has length limit and may exceed that if sent via get request
 
 8. are there separate alrams for all items in list ?
 Ans. No there is single alarm at which all prices will be updated
+
+9. Data Structure used to store the list of items ?
+Ans. Map. As we need to remove items from it as well. This can be done efficiently using maps as it stores things as key value pairs. So the key in map can correspond to row id of the item to be removed.
