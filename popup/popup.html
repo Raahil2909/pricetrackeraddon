@@ -6,9 +6,18 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div class="input-group mb-3 mx-auto px-auto">
-      <input type="text" class="form-control" placeholder="Threshold Price" aria-label="Threshold Price" aria-describedby="track-btn" id="threshold-price">
-      <button class="btn btn-primary" type="button" id="track-btn">Track</button>
+
+    <div class="input-group row mb-3 mx-auto px-auto">
+      <div class="col col-2"></div>
+      <div class="col col-6">
+        <input type="text" class="form-control" placeholder="Threshold Price" aria-label="Threshold Price" aria-describedby="track-btn" id="threshold-price">
+      </div>
+      <div class="col col-2">
+        <button class="btn btn-primary" type="button" id="track-btn">Track</button>
+      </div>
+      <div class="col col-2">
+        <button class="btn" id="refresh-btn"><img src="../icons/refresh.svg" alt="Refr"></button> 
+      </div>
     </div>
     <table class="table" id="items-table">
       <thead>
