@@ -86,6 +86,16 @@ trackBtn.addEventListener("click",async ()=>{
     });
 });
 
+
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+        if (request.msg === "updatePrices") {
+            console.log("Update popup HTML to reflect prices");
+            refreshTable();
+        }
+    }
+);
+
 refreshBtn.addEventListener("click",refreshTable);
 
 function refreshTable(){

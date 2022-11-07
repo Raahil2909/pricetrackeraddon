@@ -58,6 +58,13 @@ function updatePrices(){
                 // console.info(`dataitems: ${JSON.stringify(dataitems)}`);
             });
         }
+        chrome.runtime.sendMessage({
+            msg: "updatePrices", 
+            data: {
+                subject: "updateAllPrices",
+                content: "updateAllPrices"
+            }
+        });
     });
 }
 
